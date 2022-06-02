@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap");
+
+:root {
+	--color-blurple: #7289da;
+	--color-not-quite-black: #23272a;
+	--color-dark: #2c2f33;
+	--color-lighter-dark: #45494e;
+	--color-full-white: #ffffff;
+	--color-grey-white: #B9BBBE;
+	--color-grey-dark: #242629;
+	--color-actually-black: #000000;
+	--color-fantastic-green: #00ae7a;
+}
+
+body {
+	background: var(--color-dark);
+	font-family: "Open Sans", sans-serif;
+	color: var(--color-full-white);
+	min-height: 100vh;
+}
+
+/** styling status bar **/
+
+.panel {
+	width: 556px;
+	display: flex;
+	align-items: center;
+	padding: 0.7rem 1rem;
+	z-index: 1;
+	position: fixed;
+	background: var(--color-grey-dark);
+}
+
+.panel:hover .status-emoji,
+.panel:hover .tag {
+	transform: translateY(-128%);
+}
+
+.avatar-wrapper {
+	margin-right: 8px;
+	position: relative;
+	background: pink;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.user-info {
+	display: flex;
+	flex-grow: 20;
+	float: left;
+}
+
+.username {
+	font-size: 0.8rem;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.tipper-boi::after,
+.tipper-boi::before {
+	font-size: 0.84rem;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 64ms, transform 128ms cubic-bezier(0.43, 0.09, 0.38, 2.56);
+}
+.tipper-boi::before {
+	content: attr(data-tip);
+	position: absolute;
+	width: max-content;
+	left: 50%;
+	top: 0;
+	transform: translate(-50%, -132%) scale(0.98);
+	color: var(--color-full-white);
+	background: var(--color-actually-black);
+	padding: 8px 12px;
+	border-radius: 4px;
+	font-weight: 500;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.tipper-boi::after {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	top: 0;
+	background: var(--color-actually-black);
+	left: 50%;
+	transform: translate(-50%, -172%) rotate(45deg) scale(0.98);
+	z-index: -1;
+}
+.tipper-boi:hover::before,
+.tipper-boi:hover::after {
+	opacity: 1;
+}
+.tipper-boi:hover::after {
+	transform: translate(-50%, -172%) rotate(45deg) scale(0.98);
+}
+.tipper-boi:hover::before {
+	transform: translate(-50%, -132%) scale(1);
+}
+
+.status-holder {
+	position: absolute;
+	background: var(--color-not-quite-black);
+	padding: 2px;
+	bottom: -1px;
+	right: -1px;
+	border-radius: 50%;
+}
+
+.user-status-icon {
+	width: 8px;
+	height: 8px;
+	background: var(--color-fantastic-green);
+	border-radius: 50%;
+}
+
+.roller {
+	font-size: 0.6rem;
+	color: var(--color-header-secondary);
+	position: relative;
+	overflow: hidden;
+}
+
+.tag,
+.status-emoji
+ {
+	transition: transform 320ms ease-in-out;
+}
+
+.status-emoji {
+	margin-bottom: 2px;
+	font-size: 0.6rem;
+}
+
+.tag {
+	position: absolute;
+	font-size: 0.6rem;
+}
+
+.button-container {
+	display: flex;
+}
+
+.switcher {
+	width: 32px;
+	height: 32px;
+	border: 0;
+	background: transparent;
+	border-radius: 4px;
+	cursor: pointer;
+	color: var(--color-grey-white);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.switcher:hover {
+	background: var(--color-lighter-dark);
+}
+
+.avatar {
+	width: inherit;
+	border-radius: inherit;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul[class] {
+	list-style: none;
+}
+
+button {
+  font: inherit;
+} 

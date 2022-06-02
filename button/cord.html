@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cord</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .button {
+         --button-size: calc(var(--nav-size)*0.6);
+            width: var(--button-size);
+            height: var(--button-size);
+            background-color: #484a4d;
+            border-radius: 100%;
+            padding: 28px;
+            margin: 0.001px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: filter 300ms;
+            border: none;
+            outline: none;
+            overflow: hidden;
+            cursor: pointer;
+            background-image:url(pfp.png);
+            background-size: 100%;
+        }
+
+        .icon-button:hover {
+            filter:brightness(1.2);
+        }
+ 
+        .icon-button:active {
+            filter:brightness(1.0);
+        }
+
+        *{
+            margin: 1;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       
+        body{
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
+        .container {
+            width: 100px;
+            position: relative;
+            padding: 0;
+        }
+
+        .links {
+            padding: 12px;
+            font-size: 1.2em;
+            font-family: futura Md BT;
+            border: none;
+            outline: none;
+            width: 200px;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .list {
+            position: absolute;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: 0.3s;
+        }
+
+        .newlist {
+           transform: scaleY(1); 
+        }
+
+        .links {
+            background-color: #292f39;
+        }
+
+        .links:hover {
+            background-color: #2f373e;
+            transform: scale(1.1);
+        }
+        
+        .drop_element {
+            position: absolute;
+            top: 100%;
+            background: #fff;
+            min-width: 200px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform-origin: center top;
+            transform: scale(0);
+            opacity: 0;
+            z-index: 99;
+            transition: all 0.4s cubic-bezier(0.34, 1.16, 0.7, 1);
+        }
+
+        .drop_element li {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .drop_element li a {
+            transition: all 0.3s ease-in-out;
+            padding: 10px;
+            color: #222;
+            display: block;
+            text-decoration: none;
+        }
+
+        .drop_element li a:hover {
+            background: #eee;
+            padding-left: 15px;
+        }
+
+        .drop_container.active .drop_element {
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+        <nav>
+            <section class="panel">
+            <div class="user-info">
+                <div class="avatar-wrapper">
+                    <img class="avatar" src="pfp.png" alt="pfp">
+                    <div class="status-holder">
+                        <div class="user-status-icon"></div>
+                    </div>
+                </div>
+                <div class="name-tag-container">
+                    <h1 class="username tipper-boi"></h1>4kFlamez</h1>
+                    <div class="roller">
+                        <p class="status-emoji">#1000</p>
+                        <p class="tag">Playing<strong> Rust</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="drop_container">
+                <div>
+                    <button type="button" class="switcher tipper-boi dpop_btn" data-tip="Message" role="button">
+                    <svg class="icon-1WVg4I" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M4.79805 3C3.80445 3 2.99805 3.8055 2.99805 4.8V15.6C2.99805 16.5936 3.80445 17.4 4.79805 17.4H7.49805V21L11.098 17.4H19.198C20.1925 17.4 20.998 16.5936 20.998 15.6V4.8C20.998 3.8055 20.1925 3 19.198 3H4.79805Z" fill="currentColor"></path>
+                    </svg></button>
+                </div>
+                    <div class="switcher tipper-boi" data-tip="More" role="button">
+                        <svg class="icon-1WVg4I" width="24" height="24" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd">
+                            <path d="M24 0v24H0V0z"></path>
+                            <path fill="currentColor" d="M12 16c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2zm0-6c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2zm0-6c1.1045695 0 2 .8954305 2 2s-.8954305 2-2 2-2-.8954305-2-2 .8954305-2 2-2z"></path></g></svg></div></div>
+            </div>
+        </section></nav>
+
+        <script>
+          let drop_container = document.querySelectorAll('.drop_container');
+          let drop = document.querySelectorAll('.drop_container .drop_btn');
+            drop.forEach((btn) => {
+                btn.addEventListener('click', function() {
+                    if (this.parentElement.classList.contains(active)) {
+                        this.parentElement.classList.remove(active)
+                   } else {
+                       drop_container.forEach((item) => {
+                           item.classList.remove('active');
+                       });
+                       this.parentElement.classList.add('active')
+                   }
+                });
+            });
+
+            window.addEventListener('click', function(event) {
+                if (!event.target.matches('.drop_bnt')) {
+                    drop_container.forEach((item) => {
+                        item.classList.remove('active')
+                    })
+                }
+
+            });
+        </script>
+</body>
+</html>
